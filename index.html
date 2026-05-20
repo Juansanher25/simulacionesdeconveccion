@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solver Pro Suite: Transferencia de Calor</title>
+    <title>ThermoFlow Pro Suite</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -53,9 +53,8 @@
         const Settings2Icon = ({className="text-teal-400 w-5 h-5"}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>;
         const LayersIcon = ({className="w-5 h-5"}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 12 12 17 22 12"></polyline><polyline points="2 17 12 22 22 17"></polyline></svg>;
         const WindIcon = ({className="text-blue-400 w-5 h-5"}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12.8 19.6A2 2 0 1 0 14 16H2"></path><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"></path><path d="M9.8 4.4A2 2 0 1 1 11 8H2"></path></svg>;
-        const ActivityIcon = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>;
+        const ActivityIcon = ({className="w-5 h-5"}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>;
         const ZapIcon = ({className="text-yellow-500 w-5 h-5"}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>;
-        const ThermometerIcon = ({className="text-red-400 w-5 h-5"}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path></svg>;
         const SquareIcon = ({className="w-5 h-5"}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>;
         const CircleIcon = ({className="w-5 h-5"}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"></circle></svg>;
         const FactoryIcon = ({className="w-5 h-5"}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path><path d="M17 18h1"></path><path d="M12 18h1"></path><path d="M7 18h1"></path></svg>;
@@ -64,32 +63,32 @@
 
         // --- COMPONENTES COMPARTIDOS ---
         const FluidPropertiesCard = ({ fluidPreset, setFluidPreset, kinematicViscosity, setKinematicViscosity, thermalConductivity, setThermalConductivity, prandtl, setPrandtl }) => (
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+            <div className="bg-slate-900 rounded-2xl shadow-xl p-5 border border-slate-800 relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none"><DropletsIcon className="w-24 h-24" /></div>
-                <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2"><Settings2Icon /> Propiedades del Fluido</h2>
+                <h3 className="text-lg font-bold text-white mb-4 border-b border-slate-800 pb-2"><Settings2Icon className="inline mr-2 text-teal-400 w-5 h-5"/> Propiedades Fluido</h3>
                 <div className="space-y-4 relative z-10">
                     <div>
-                        <label className="block text-xs font-medium text-slate-400 uppercase tracking-wider mb-1">Material Predefinido</label>
-                        <select className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-slate-200 focus:ring-2 focus:ring-teal-500 outline-none" value={fluidPreset} onChange={(e) => setFluidPreset(e.target.value)}>
-                            <option value="aire300">Aire a 300 K (1 atm)</option>
+                        <label className="block text-xs font-medium text-slate-400 uppercase mb-1">Predefinido</label>
+                        <select className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-sm text-slate-200 outline-none" value={fluidPreset} onChange={(e) => setFluidPreset(e.target.value)}>
+                            <option value="aire300">Aire a 300 K</option>
                             <option value="agua300">Agua Líquida a 300 K</option>
-                            <option value="aceiteMotor300">Aceite de Motor a 300 K</option>
-                            <option value="personalizado">-- Ingreso Manual (Personalizado) --</option>
+                            <option value="aceiteMotor300">Aceite Motor a 300 K</option>
+                            <option value="personalizado">Personalizado</option>
                         </select>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-3">
                         <div>
                             <label className="block text-xs font-medium text-slate-400 mb-1">Viscosidad (ν)</label>
-                            <div className="flex"><input type="number" step="any" className="w-full bg-slate-950 border border-slate-800 rounded-l-lg p-2 text-sm text-white outline-none" value={kinematicViscosity} onChange={(e) => { setKinematicViscosity(parseFloat(e.target.value)); setFluidPreset('personalizado'); }} /><span className="bg-slate-800 border border-slate-800 text-slate-400 px-2 flex items-center text-xs rounded-r-lg">m²/s</span></div>
+                            <div className="flex"><input type="number" step="any" className="w-full bg-slate-950 border border-slate-800 rounded-l-lg p-1.5 text-xs text-white outline-none" value={kinematicViscosity} onChange={(e) => { setKinematicViscosity(parseFloat(e.target.value)); setFluidPreset('personalizado'); }} /><span className="bg-slate-800 border border-slate-800 text-slate-400 px-1 flex items-center text-[10px] rounded-r-lg">m²/s</span></div>
                         </div>
                         <div>
-                            <label className="block text-xs font-medium text-slate-400 mb-1">Conductividad (k)</label>
-                            <div className="flex"><input type="number" step="any" className="w-full bg-slate-950 border border-slate-800 rounded-l-lg p-2 text-sm text-white outline-none" value={thermalConductivity} onChange={(e) => { setThermalConductivity(parseFloat(e.target.value)); setFluidPreset('personalizado'); }} /><span className="bg-slate-800 border border-slate-800 text-slate-400 px-2 flex items-center text-xs rounded-r-lg">W/mK</span></div>
+                            <label className="block text-xs font-medium text-slate-400 mb-1">Cond. (k)</label>
+                            <div className="flex"><input type="number" step="any" className="w-full bg-slate-950 border border-slate-800 rounded-l-lg p-1.5 text-xs text-white outline-none" value={thermalConductivity} onChange={(e) => { setThermalConductivity(parseFloat(e.target.value)); setFluidPreset('personalizado'); }} /><span className="bg-slate-800 border border-slate-800 text-slate-400 px-1 flex items-center text-[10px] rounded-r-lg">W/mK</span></div>
                         </div>
                     </div>
                     <div>
-                        <label className="block text-xs font-medium text-slate-400 mb-1">Número de Prandtl (Pr)</label>
-                        <input type="number" step="any" className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-sm text-white outline-none" value={prandtl} onChange={(e) => { setPrandtl(parseFloat(e.target.value)); setFluidPreset('personalizado'); }} />
+                        <label className="block text-xs font-medium text-slate-400 mb-1">Prandtl (Pr)</label>
+                        <input type="number" step="any" className="w-full bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-xs text-white outline-none" value={prandtl} onChange={(e) => { setPrandtl(parseFloat(e.target.value)); setFluidPreset('personalizado'); }} />
                     </div>
                 </div>
             </div>
@@ -109,10 +108,10 @@
                             </div>
                         </div>
                         
-                        <h1 className="text-4xl md:text-5xl font-black text-white mb-8 tracking-tight">Solver Pro <span className="text-teal-400">Suite</span></h1>
+                        <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">ThermoFlow Pro <span className="text-teal-400">Suite</span></h1>
                         
                         <div className="space-y-3 mb-10 text-slate-300 text-lg md:text-xl">
-                            <p className="font-bold text-blue-400 uppercase tracking-widest text-sm mb-4">Laboratorio Virtual de Ingeniería</p>
+                            <p className="font-bold text-blue-400 uppercase tracking-widest text-sm mb-4">Laboratorio Virtual de Ingeniería Térmica</p>
                             <p>Curso: <span className="text-white font-semibold">Transferencia de Calor I</span></p>
                             <p>Tema: <span className="text-white font-semibold">Convección</span></p>
                             <p>Profesor: <span className="text-white font-semibold">Ph. D. Juan Sandoval Herrera</span></p>
@@ -143,7 +142,7 @@
             );
         }
 
-        // --- SIMULACIÓN 1: PLACA PLANA (EXTERNA) ---
+        // --- SIMULACIÓN 1: PLACA PLANA (EXTERNA) CON GRÁFICAS ---
         function FlatPlateSimulation({ presets }) {
             const [fluidPreset, setFluidPreset] = useState('aire300');
             const [kinematicViscosity, setKinematicViscosity] = useState(1.562e-5);
@@ -155,345 +154,33 @@
             const [tSurface, setTSurface] = useState(350);
             const [tFluid, setTFluid] = useState(300);
 
-            useEffect(() => {
-                if (fluidPreset !== 'personalizado') {
-                    setKinematicViscosity(presets[fluidPreset].nu); setPrandtl(presets[fluidPreset].pr); setThermalConductivity(presets[fluidPreset].k);
-                }
-            }, [fluidPreset, presets]);
-
-            const results = useMemo(() => {
-                if (kinematicViscosity <= 0 || length <= 0 || velocity < 0) return { Re: 0, regime: 'Indeterminado', Nu: 0, h: 0, Q: 0, area: length*width, deltaT: Math.abs(tSurface-tFluid) };
-                const Re = (velocity * length) / kinematicViscosity;
-                let Nu = 0; let regime = ''; const Re_critical = 5e5;
-                if (Re < Re_critical) { regime = 'Laminar'; Nu = 0.664 * Math.pow(Re, 0.5) * Math.pow(prandtl, 1/3); } 
-                else { regime = 'Turbulento (Mixto)'; Nu = (0.037 * Math.pow(Re, 0.8) - 871) * Math.pow(prandtl, 1/3); if (Nu < 0) Nu = 0; }
-                const h = (Nu * thermalConductivity) / length;
-                const area = length * width; const deltaT = Math.abs(tSurface - tFluid); const Q = h * area * deltaT;
-                return { Re, regime, Nu, h, Q, area, deltaT };
-            }, [velocity, length, width, kinematicViscosity, prandtl, thermalConductivity, tSurface, tFluid]);
-
-            const formatSci = (num) => num.toExponential(2);
-            const formatDec = (num, decimals = 2) => num.toFixed(decimals);
-
-            return (
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 pb-12">
-                    <div className="lg:col-span-5 space-y-6">
-                        <FluidPropertiesCard {...{fluidPreset, setFluidPreset, kinematicViscosity, setKinematicViscosity, thermalConductivity, setThermalConductivity, prandtl, setPrandtl}} />
-                        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                            <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2"><WindIcon /> Dinámica y Geometría</h2>
-                            <div className="space-y-4 relative z-10">
-                                <div>
-                                    <div className="flex justify-between mb-1"><label className="block text-xs font-medium text-slate-400">Velocidad (V)</label><span className="text-xs text-blue-400">{velocity} m/s</span></div>
-                                    <input type="range" min="0.1" max="50" step="0.1" className="w-full" value={velocity} onChange={(e) => setVelocity(parseFloat(e.target.value))} />
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div><label className="block text-xs font-medium text-slate-400 mb-1">Longitud (L)</label><input type="number" step="0.1" min="0.1" className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-sm text-white" value={length} onChange={(e) => setLength(parseFloat(e.target.value))} /></div>
-                                    <div><label className="block text-xs font-medium text-slate-400 mb-1">Ancho (w)</label><input type="number" step="0.1" min="0.1" className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-sm text-white" value={width} onChange={(e) => setWidth(parseFloat(e.target.value))} /></div>
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div><label className="block text-xs font-medium text-slate-400 mb-1">T. Superficie (Ts)</label><input type="number" step="1" className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-sm text-white" value={tSurface} onChange={(e) => setTSurface(parseFloat(e.target.value))} /></div>
-                                    <div><label className="block text-xs font-medium text-slate-400 mb-1">T. Fluido (T∞)</label><input type="number" step="1" className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-sm text-white" value={tFluid} onChange={(e) => setTFluid(parseFloat(e.target.value))} /></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="lg:col-span-7 space-y-6">
-                        <div className="bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl p-8 shadow-2xl relative overflow-hidden">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
-                                <div className="flex flex-col justify-center">
-                                    <div className="flex items-center gap-2 mb-2"><ZapIcon /><h3 className="text-sm font-medium text-slate-300 uppercase">Flujo de Calor (Q)</h3></div>
-                                    <div className="flex items-baseline gap-2">
-                                        <span className="text-5xl font-black text-white">{results.Q > 1000 ? formatDec(results.Q / 1000, 2) : formatDec(results.Q, 1)}</span>
-                                        <span className="text-xl text-yellow-500 font-bold">{results.Q > 1000 ? 'kW' : 'W'}</span>
-                                    </div>
-                                    <p className="text-slate-400 text-sm mt-2">Área: {formatDec(results.area)} m² | ΔT: {formatDec(results.deltaT)} K</p>
-                                </div>
-                                <div className="flex flex-col justify-center border-t md:border-t-0 md:border-l border-slate-700 pt-6 md:pt-0 md:pl-8">
-                                    <div className="flex items-center gap-2 mb-2"><ThermometerIcon /><h3 className="text-sm font-medium text-slate-300 uppercase">Coef. de Película (h)</h3></div>
-                                    <div className="flex items-baseline gap-2">
-                                        <span className="text-4xl font-bold text-white">{formatDec(results.h, 2)}</span>
-                                        <span className="text-lg text-red-400 font-medium">W/(m²·K)</span>
-                                    </div>
-                                    <div className="mt-4 p-3 bg-slate-950/50 rounded-lg border border-slate-800"><span className="text-xs text-slate-400 block mb-1">Nusselt (Nu<sub>L</sub>)</span><span className="text-lg font-semibold text-slate-200">{formatDec(results.Nu, 1)}</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="bg-slate-950 border border-slate-800 rounded-xl p-5 flex flex-col items-center text-center">
-                                    <span className="text-xs text-slate-400 uppercase tracking-widest mb-2">Reynolds (Re<sub>L</sub>)</span>
-                                    <span className="text-3xl font-bold text-blue-400 font-mono mb-2">{formatSci(results.Re)}</span>
-                                </div>
-                                <div className="border rounded-xl p-5 flex flex-col justify-center items-center text-center bg-slate-950 border-slate-800">
-                                    <span className="text-xs text-slate-400 uppercase tracking-widest mb-2">Régimen</span>
-                                    <span className={`text-2xl font-black uppercase tracking-wider ${results.regime === 'Laminar' ? 'text-emerald-400' : 'text-orange-400'}`}>{results.regime}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-        }
-
-        // --- SIMULACIÓN 2: TUBERÍA CIRCULAR (INTERNA) ---
-        function PipeSimulation({ presets }) {
-            const [fluidPreset, setFluidPreset] = useState('agua300');
-            const [kinematicViscosity, setKinematicViscosity] = useState(8.56e-7);
-            const [prandtl, setPrandtl] = useState(5.83);
-            const [thermalConductivity, setThermalConductivity] = useState(0.613);
-            const [velocity, setVelocity] = useState(2.0);
-            const [diameter, setDiameter] = useState(0.05);
-            const [length, setLength] = useState(5.0);
-            const [tSurface, setTSurface] = useState(350);
-            const [tFluid, setTFluid] = useState(300);
-            const [boundaryCondition, setBoundaryCondition] = useState('Ts'); // Selector de condición
-
-            useEffect(() => {
-                if (fluidPreset !== 'personalizado') {
-                    setKinematicViscosity(presets[fluidPreset].nu); setPrandtl(presets[fluidPreset].pr); setThermalConductivity(presets[fluidPreset].k);
-                }
-            }, [fluidPreset, presets]);
-
-            const results = useMemo(() => {
-                if (kinematicViscosity <= 0 || diameter <= 0 || velocity < 0 || length <= 0) return { Re: 0, regime: 'Indeterminado', Nu: 0, h: 0, Q: 0, area: 0, deltaT: 0 };
-                const Re = (velocity * diameter) / kinematicViscosity;
-                let Nu = 0; let regime = '';
-                if (Re < 2300) { 
-                    regime = 'Laminar'; 
-                    Nu = boundaryCondition === 'Ts' ? 3.66 : 4.36; 
-                } 
-                else if (Re < 10000) { regime = 'Transición'; Nu = 0.023 * Math.pow(Re, 0.8) * Math.pow(prandtl, 0.4); } 
-                else { regime = 'Turbulento'; const n = tSurface > tFluid ? 0.4 : 0.3; Nu = 0.023 * Math.pow(Re, 0.8) * Math.pow(prandtl, n); }
-                const h = (Nu * thermalConductivity) / diameter;
-                const area = Math.PI * diameter * length; const deltaT = Math.abs(tSurface - tFluid); const Q = h * area * deltaT;
-                return { Re, regime, Nu, h, Q, area, deltaT };
-            }, [velocity, diameter, length, kinematicViscosity, prandtl, thermalConductivity, tSurface, tFluid, boundaryCondition]);
-
-            const formatSci = (num) => num.toExponential(2);
-            const formatDec = (num, decimals = 2) => num.toFixed(decimals);
-
-            return (
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 pb-12">
-                    <div className="lg:col-span-5 space-y-6">
-                        <FluidPropertiesCard {...{fluidPreset, setFluidPreset, kinematicViscosity, setKinematicViscosity, thermalConductivity, setThermalConductivity, prandtl, setPrandtl}} />
-                        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                            <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2"><WindIcon /> Geometría del Tubo</h2>
-                            <div className="space-y-4 relative z-10">
-                                <div>
-                                    <div className="flex justify-between mb-1"><label className="block text-xs font-medium text-slate-400">Velocidad Promedio (V)</label><span className="text-xs text-blue-400">{velocity} m/s</span></div>
-                                    <input type="range" min="0.1" max="20" step="0.1" className="w-full" value={velocity} onChange={(e) => setVelocity(parseFloat(e.target.value))} />
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div><label className="block text-xs font-medium text-slate-400 mb-1">Diámetro (D)</label><input type="number" step="0.01" min="0.01" className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-sm text-white" value={diameter} onChange={(e) => setDiameter(parseFloat(e.target.value))} /></div>
-                                    <div><label className="block text-xs font-medium text-slate-400 mb-1">Longitud (L)</label><input type="number" step="0.1" min="0.1" className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-sm text-white" value={length} onChange={(e) => setLength(parseFloat(e.target.value))} /></div>
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div><label className="block text-xs font-medium text-slate-400 mb-1">T. Pared (Ts)</label><input type="number" step="1" className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-sm text-white" value={tSurface} onChange={(e) => setTSurface(parseFloat(e.target.value))} /></div>
-                                    <div><label className="block text-xs font-medium text-slate-400 mb-1">T. Fluido (Tm)</label><input type="number" step="1" className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-sm text-white" value={tFluid} onChange={(e) => setTFluid(parseFloat(e.target.value))} /></div>
-                                </div>
-                                <div>
-                                    <label className="block text-xs font-medium text-slate-400 mb-1">Condición de Pared (Flujo Laminar)</label>
-                                    <select className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-sm text-slate-200 outline-none" value={boundaryCondition} onChange={(e) => setBoundaryCondition(e.target.value)}>
-                                        <option value="Ts">Temp. de Pared Constante (Ts) [Nu = 3.66]</option>
-                                        <option value="qs">Flujo de Calor Constante (qs) [Nu = 4.36]</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="lg:col-span-7 space-y-6">
-                        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                            <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2"><CircleIcon className="w-5 h-5 text-indigo-400" /> Esquema Físico: Tubería Circular</h2>
-                            <div className="w-full flex justify-center py-6 bg-slate-950 rounded-xl border border-slate-800">
-                                <svg viewBox="0 0 500 180" className="w-full max-w-lg h-auto text-slate-300">
-                                    <defs>
-                                        <marker id="arrowHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker>
-                                        <linearGradient id="pipeGrad" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0%" stopColor="#ef4444" stopOpacity="0.8"/>
-                                            <stop offset="10%" stopColor="#450a0a" stopOpacity="0.4"/>
-                                            <stop offset="90%" stopColor="#450a0a" stopOpacity="0.4"/>
-                                            <stop offset="100%" stopColor="#ef4444" stopOpacity="0.8"/>
-                                        </linearGradient>
-                                    </defs>
-                                    <rect x="100" y="40" width="300" height="100" fill="url(#pipeGrad)" stroke="#ef4444" strokeWidth="2" />
-                                    <g stroke="#3b82f6" strokeWidth="2" fill="none">
-                                        <path d="M 20,60 L 80,60" markerEnd="url(#arrowHead)" />
-                                        <path d="M 20,90 L 80,90" markerEnd="url(#arrowHead)" />
-                                        <path d="M 20,120 L 80,120" markerEnd="url(#arrowHead)" />
-                                    </g>
-                                    <text x="10" y="45" fill="#60a5fa" fontSize="14" fontWeight="bold">V<tspan fontSize="10" dy="4">media</tspan>, T<tspan fontSize="10" dy="4">m,i</tspan></text>
-                                    <path d="M 250,40 Q 330,90 250,140" stroke="#f59e0b" strokeWidth="2" fill="none" strokeDasharray="4,2"/>
-                                    <path d="M 250,90 L 310,90" stroke="#f59e0b" strokeWidth="1" markerEnd="url(#arrowHead)"/>
-                                    <text x="315" y="85" fill="#fbbf24" fontSize="12" fontWeight="bold">Perfil u(r)</text>
-                                    <text x="210" y="25" fill="#fca5a5" fontSize="14">Pared (T<tspan fontSize="10" dy="4">s</tspan> ó q<tspan fontSize="10" dy="4">s</tspan>)</text>
-                                    <path d="M 420,40 L 440,40 M 420,140 L 440,140 M 430,40 L 430,140" stroke="#64748b" strokeWidth="1" />
-                                    <text x="445" y="95" fill="#94a3b8" fontSize="14">D</text>
-                                </svg>
-                            </div>
-                        </div>
-                        <div className="bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl p-8 shadow-2xl relative overflow-hidden">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
-                                <div className="flex flex-col justify-center">
-                                    <div className="flex items-center gap-2 mb-2"><ZapIcon /><h3 className="text-sm font-medium text-slate-300 uppercase">Flujo de Calor (Q)</h3></div>
-                                    <div className="flex items-baseline gap-2">
-                                        <span className="text-5xl font-black text-white">{results.Q > 1000 ? formatDec(results.Q / 1000, 2) : formatDec(results.Q, 1)}</span>
-                                        <span className="text-xl text-yellow-500 font-bold">{results.Q > 1000 ? 'kW' : 'W'}</span>
-                                    </div>
-                                    <p className="text-slate-400 text-sm mt-2">Área interna: {formatDec(results.area)} m² | ΔT: {formatDec(results.deltaT)} K</p>
-                                </div>
-                                <div className="flex flex-col justify-center border-t md:border-t-0 md:border-l border-slate-700 pt-6 md:pt-0 md:pl-8">
-                                    <div className="flex items-center gap-2 mb-2"><ThermometerIcon /><h3 className="text-sm font-medium text-slate-300 uppercase">Coef. de Película (h)</h3></div>
-                                    <div className="flex items-baseline gap-2">
-                                        <span className="text-4xl font-bold text-white">{formatDec(results.h, 2)}</span>
-                                        <span className="text-lg text-red-400 font-medium">W/(m²·K)</span>
-                                    </div>
-                                    <div className="mt-4 p-3 bg-slate-950/50 rounded-lg border border-slate-800"><span className="text-xs text-slate-400 block mb-1">Nusselt (Nu<sub>D</sub>)</span><span className="text-lg font-semibold text-slate-200">{formatDec(results.Nu, 1)}</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="bg-slate-950 border border-slate-800 rounded-xl p-5 flex flex-col items-center text-center">
-                                    <span className="text-xs text-slate-400 uppercase tracking-widest mb-2">Reynolds (Re<sub>D</sub>)</span>
-                                    <span className="text-3xl font-bold text-blue-400 font-mono mb-2">{formatSci(results.Re)}</span>
-                                </div>
-                                <div className="border rounded-xl p-5 flex flex-col justify-center items-center text-center bg-slate-950 border-slate-800">
-                                    <span className="text-xs text-slate-400 uppercase tracking-widest mb-2">Régimen</span>
-                                    <span className={`text-2xl font-black uppercase tracking-wider ${results.regime === 'Laminar' ? 'text-emerald-400' : (results.regime === 'Transición' ? 'text-yellow-400' : 'text-orange-400')}`}>{results.regime}</span>
-                                    <span className="text-xs text-slate-500 mt-2">
-                                        {results.regime === 'Laminar' ? (boundaryCondition === 'Ts' ? 'Flujo estacionario. Nu constante (Ts cte).' : 'Flujo estacionario. Nu constante (qs cte).') : 
-                                         results.regime === 'Transición' ? 'Régimen inestable. Modelado complejo.' : 'Mezclado intenso. Ec. de Dittus-Boelter.'}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-        }
-
-        // --- SIMULACIÓN 3: CHIMENEA (Ducto vertical con gases, animada con Canvas y Chart.js) ---
-        function ChimneySimulation() {
-            // Propiedades del Aire a Tf ~ 200°C (Simplificación pedagógica del original)
-            const nu_air = 0.0000345; 
-            const k_air = 0.0381;     
-            const Pr_air = 0.697;     
-            const n_cooling = 0.3;    
-
-            const [d, setD] = useState(0.5);
-            const [v, setV] = useState(3.0);
-            const [hChimney, setHChimney] = useState(5.0);
-            const [te, setTe] = useState(350);
-            const [ts, setTs] = useState(250);
-            const [tw, setTw] = useState(100);
-
-            // Ref para la animación
-            const canvasRef = useRef(null);
-            const stateRef = useRef({d, v});
-            const particlesRef = useRef([]);
-
-            // Ref para los gráficos
+            // Modal y Refs de Chart
             const chartVRef = useRef(null);
-            const chartDRef = useRef(null);
-            const chartHRef = useRef(null);
+            const chartLRef = useRef(null);
+            const chartTRef = useRef(null);
             const expandedChartRef = useRef(null);
-            
             const [isModalOpen, setIsModalOpen] = useState(false);
             const [expandedType, setExpandedType] = useState(null);
 
-            // Mantener refs actualizados para el requestAnimationFrame
-            useEffect(() => { stateRef.current = { d, v }; }, [d, v]);
+            useEffect(() => {
+                if (fluidPreset !== 'personalizado') {
+                    setKinematicViscosity(presets[fluidPreset].nu); setPrandtl(presets[fluidPreset].pr); setThermalConductivity(presets[fluidPreset].k);
+                }
+            }, [fluidPreset, presets]);
 
-            // Función Core
-            const calcCore = (dia, vel, alt, ten, tsa, twa) => {
-                const tm = (ten + tsa) / 2;
-                const tf = (tm + twa) / 2;
-                const re = (vel * dia) / nu_air;
-                const nu = 0.023 * Math.pow(re, 0.8) * Math.pow(Pr_air, n_cooling);
-                const h_conv = (nu * k_air) / dia;
-                const area = Math.PI * dia * alt;
-                const q = h_conv * area * (tm - twa);
-                return { tm, tf, re, nu, h_conv, area, q };
+            const calcCore = (v, L, w, nu_val, pr_val, k_val, ts_val, tf_val) => {
+                const Re = (v * L) / nu_val;
+                let Nu = 0; let regime = ''; const Re_critical = 5e5;
+                if (Re < Re_critical) { regime = 'Laminar'; Nu = 0.664 * Math.pow(Re, 0.5) * Math.pow(pr_val, 1/3); } 
+                else { regime = 'Turbulento'; Nu = (0.037 * Math.pow(Re, 0.8) - 871) * Math.pow(pr_val, 1/3); if (Nu < 0) Nu = 0; }
+                const h = (Nu * k_val) / L;
+                const area = L * w; const deltaT = Math.abs(ts_val - tf_val); const Q = h * area * deltaT;
+                return { Re, regime, Nu, h, Q, area, deltaT };
             };
 
-            const res = useMemo(() => calcCore(d, v, hChimney, te, ts, tw), [d, v, hChimney, te, ts, tw]);
+            const res = useMemo(() => calcCore(velocity, length, width, kinematicViscosity, prandtl, thermalConductivity, tSurface, tFluid), 
+                [velocity, length, width, kinematicViscosity, prandtl, thermalConductivity, tSurface, tFluid]);
 
-            // Animación Canvas
-            useEffect(() => {
-                const canvas = canvasRef.current;
-                if (!canvas) return;
-                const ctx = canvas.getContext('2d');
-                
-                // Inicializar partículas solo una vez
-                if (particlesRef.current.length === 0) {
-                    for (let i = 0; i < 80; i++) {
-                        particlesRef.current.push({
-                            x: Math.random(), y: Math.random() * canvas.height,
-                            size: Math.random() * 4 + 2, opacity: Math.random() * 0.5 + 0.2,
-                            wobbleSpeed: Math.random() * 0.05 + 0.02, wobbleOffset: Math.random() * Math.PI * 2
-                        });
-                    }
-                }
-
-                let animationFrameId;
-                const render = () => {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    
-                    // Fondo
-                    const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-                    grad.addColorStop(0, '#1e293b'); grad.addColorStop(1, '#020617');
-                    ctx.fillStyle = grad;
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-                    const currD = stateRef.current.d;
-                    const currV = stateRef.current.v;
-
-                    const minWidthPx = 40; const maxWidthPx = 220;
-                    const visualWidth = minWidthPx + ((currD - 0.1) / (2.0 - 0.1)) * (maxWidthPx - minWidthPx);
-                    
-                    const centerX = canvas.width / 2;
-                    const wallThickness = 15;
-                    const leftWallX = centerX - visualWidth / 2 - wallThickness;
-                    const rightWallX = centerX + visualWidth / 2;
-
-                    ctx.fillStyle = '#475569';
-                    ctx.fillRect(leftWallX, 0, wallThickness, canvas.height);
-                    ctx.fillRect(rightWallX, 0, wallThickness, canvas.height);
-                    
-                    ctx.strokeStyle = '#334155'; ctx.lineWidth = 1;
-                    for(let y=0; y<canvas.height; y+=20) {
-                        ctx.beginPath(); ctx.moveTo(leftWallX, y); ctx.lineTo(leftWallX+wallThickness, y); ctx.stroke();
-                        ctx.beginPath(); ctx.moveTo(rightWallX, y); ctx.lineTo(rightWallX+wallThickness, y); ctx.stroke();
-                    }
-
-                    const baseSpeed = currV * 0.8;
-
-                    for (let i = 0; i < particlesRef.current.length; i++) {
-                        let p = particlesRef.current[i];
-                        p.y -= baseSpeed * (p.size * 0.3);
-                        if (p.y < -20) { p.y = canvas.height + 20; p.x = Math.random(); }
-
-                        let turbulencia = (currV / 15) * 10; 
-                        let wobble = Math.sin(Date.now() * p.wobbleSpeed * 0.1 + p.wobbleOffset) * turbulencia;
-                        let actualX = (centerX - visualWidth/2 + 5) + p.x * (visualWidth - 10) + wobble;
-                        actualX = Math.max(centerX - visualWidth/2 + p.size, Math.min(centerX + visualWidth/2 - p.size, actualX));
-
-                        let heightRatio = p.y / canvas.height;
-                        let r = Math.floor(150 + 105 * heightRatio); // Más rojo abajo
-                        let g = Math.floor(50 + 100 * heightRatio);
-                        let b = Math.floor(50);
-
-                        ctx.beginPath(); ctx.arc(actualX, p.y, p.size, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.opacity})`;
-                        ctx.fill();
-                    }
-                    animationFrameId = requestAnimationFrame(render);
-                };
-                render();
-                return () => cancelAnimationFrame(animationFrameId);
-            }, []);
-
-            // Configuración común para los gráficos
             const commonChartOptions = {
                 responsive: true, maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
@@ -504,60 +191,490 @@
                 }
             };
 
-            // Inicializar Gráficas
             useEffect(() => {
-                chartVRef.current = new Chart(document.getElementById('chartV_canvas'), { type: 'line', data: { labels: [], datasets: [{ data: [], borderColor: '#0ea5e9', backgroundColor: 'rgba(14, 165, 233, 0.1)', fill: true, tension: 0.4 }] }, options: { ...commonChartOptions, plugins: { title: { display: true, text: 'h vs. Velocidad', color: '#e2e8f0' } } } });
-                chartDRef.current = new Chart(document.getElementById('chartD_canvas'), { type: 'line', data: { labels: [], datasets: [{ data: [], borderColor: '#f97316', backgroundColor: 'rgba(249, 115, 22, 0.1)', fill: true, tension: 0.4 }] }, options: { ...commonChartOptions, plugins: { title: { display: true, text: 'h vs. Diámetro', color: '#e2e8f0' } } } });
-                chartHRef.current = new Chart(document.getElementById('chartH_canvas'), { type: 'line', data: { labels: [], datasets: [{ data: [], borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.1)', fill: true, tension: 0.4 }] }, options: { ...commonChartOptions, plugins: { title: { display: true, text: 'h vs. Altura', color: '#e2e8f0' } } } });
-                
-                return () => { chartVRef.current?.destroy(); chartDRef.current?.destroy(); chartHRef.current?.destroy(); };
+                chartVRef.current = new Chart(document.getElementById('fp_chartV'), { type: 'line', data: { labels: [], datasets: [{ data: [], borderColor: '#0ea5e9', backgroundColor: 'rgba(14, 165, 233, 0.1)', fill: true, tension: 0.4 }] }, options: { ...commonChartOptions, plugins: { title: { display: true, text: 'h vs. Velocidad', color: '#e2e8f0' } } } });
+                chartLRef.current = new Chart(document.getElementById('fp_chartL'), { type: 'line', data: { labels: [], datasets: [{ data: [], borderColor: '#f97316', backgroundColor: 'rgba(249, 115, 22, 0.1)', fill: true, tension: 0.4 }] }, options: { ...commonChartOptions, plugins: { title: { display: true, text: 'h vs. Longitud', color: '#e2e8f0' } } } });
+                chartTRef.current = new Chart(document.getElementById('fp_chartT'), { type: 'line', data: { labels: [], datasets: [{ data: [], borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.1)', fill: true, tension: 0.4 }] }, options: { ...commonChartOptions, plugins: { title: { display: true, text: 'Q vs. ΔT', color: '#e2e8f0' } } } });
+                return () => { chartVRef.current?.destroy(); chartLRef.current?.destroy(); chartTRef.current?.destroy(); };
             }, []);
 
-            // Actualizar Datos de Gráficas
             useEffect(() => {
-                if (!chartVRef.current || !chartDRef.current || !chartHRef.current) return;
+                if (!chartVRef.current || !chartLRef.current || !chartTRef.current) return;
 
-                // Gráfica V
-                let v_labels = [], h_vs_v = [], pointColorsV = [], pointRadiusV = [];
-                for (let vel = 0.5; vel <= 15; vel += 0.5) {
-                    v_labels.push(vel.toFixed(1)); h_vs_v.push(calcCore(d, vel, hChimney, te, ts, tw).h_conv);
-                    let isCurrent = Math.abs(vel - v) < 0.1;
-                    pointColorsV.push(isCurrent ? '#ef4444' : 'rgba(14, 165, 233, 0.1)');
-                    pointRadiusV.push(isCurrent ? 6 : 0);
+                // V Chart
+                let v_l = [], h_vs_v = [], cV = [], rV = [];
+                for (let vel = 0.5; vel <= 50; vel += 1) {
+                    v_l.push(vel.toFixed(1)); h_vs_v.push(calcCore(vel, length, width, kinematicViscosity, prandtl, thermalConductivity, tSurface, tFluid).h);
+                    let isC = Math.abs(vel - velocity) < 0.6; cV.push(isC ? '#ef4444' : 'rgba(14, 165, 233, 0.1)'); rV.push(isC ? 6 : 0);
                 }
-                chartVRef.current.data = { labels: v_labels, datasets: [{ data: h_vs_v, borderColor: '#0ea5e9', backgroundColor: 'rgba(14, 165, 233, 0.1)', fill: true, tension: 0.4, pointBackgroundColor: pointColorsV, pointRadius: pointRadiusV }] };
+                chartVRef.current.data = { labels: v_l, datasets: [{ data: h_vs_v, borderColor: '#0ea5e9', backgroundColor: 'rgba(14, 165, 233, 0.1)', fill: true, tension: 0.4, pointBackgroundColor: cV, pointRadius: rV }] };
                 chartVRef.current.update();
 
-                // Gráfica D
-                let d_labels = [], h_vs_d = [], pointColorsD = [], pointRadiusD = [];
-                for (let dia = 0.1; dia <= 2.0; dia += 0.05) {
-                    d_labels.push(dia.toFixed(2)); h_vs_d.push(calcCore(dia, v, hChimney, te, ts, tw).h_conv);
-                    let isCurrent = Math.abs(dia - d) < 0.02;
-                    pointColorsD.push(isCurrent ? '#ef4444' : 'rgba(249, 115, 22, 0.1)');
-                    pointRadiusD.push(isCurrent ? 6 : 0);
+                // L Chart
+                let l_l = [], h_vs_l = [], cL = [], rL = [];
+                for (let len = 0.1; len <= 10; len += 0.2) {
+                    l_l.push(len.toFixed(1)); h_vs_l.push(calcCore(velocity, len, width, kinematicViscosity, prandtl, thermalConductivity, tSurface, tFluid).h);
+                    let isC = Math.abs(len - length) < 0.3; cL.push(isC ? '#ef4444' : 'rgba(249, 115, 22, 0.1)'); rL.push(isC ? 6 : 0);
                 }
-                chartDRef.current.data = { labels: d_labels, datasets: [{ data: h_vs_d, borderColor: '#f97316', backgroundColor: 'rgba(249, 115, 22, 0.1)', fill: true, tension: 0.4, pointBackgroundColor: pointColorsD, pointRadius: pointRadiusD }] };
-                chartDRef.current.update();
+                chartLRef.current.data = { labels: l_l, datasets: [{ data: h_vs_l, borderColor: '#f97316', backgroundColor: 'rgba(249, 115, 22, 0.1)', fill: true, tension: 0.4, pointBackgroundColor: cL, pointRadius: rL }] };
+                chartLRef.current.update();
 
-                // Gráfica H
-                let h_labels = [], h_vs_h = [], pointColorsH = [], pointRadiusH = [];
-                for (let alt = 1.0; alt <= 20.0; alt += 0.5) {
-                    h_labels.push(alt.toFixed(1)); h_vs_h.push(calcCore(d, v, alt, te, ts, tw).h_conv);
-                    let isCurrent = Math.abs(alt - hChimney) < 0.2;
-                    pointColorsH.push(isCurrent ? '#ef4444' : 'rgba(16, 185, 129, 0.1)');
-                    pointRadiusH.push(isCurrent ? 6 : 0);
+                // T Chart (Q vs Delta T)
+                let t_l = [], q_vs_t = [], cT = [], rT = [];
+                for (let ts_var = tFluid + 5; ts_var <= tFluid + 200; ts_var += 5) {
+                    let dt = ts_var - tFluid;
+                    t_l.push(dt.toFixed(0)); q_vs_t.push(calcCore(velocity, length, width, kinematicViscosity, prandtl, thermalConductivity, ts_var, tFluid).Q);
+                    let isC = Math.abs(ts_var - tSurface) < 3; cT.push(isC ? '#ef4444' : 'rgba(16, 185, 129, 0.1)'); rT.push(isC ? 6 : 0);
                 }
-                chartHRef.current.data = { labels: h_labels, datasets: [{ data: h_vs_h, borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.1)', fill: true, tension: 0.4, pointBackgroundColor: pointColorsH, pointRadius: pointRadiusH }] };
-                chartHRef.current.update();
+                chartTRef.current.data = { labels: t_l, datasets: [{ data: q_vs_t, borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.1)', fill: true, tension: 0.4, pointBackgroundColor: cT, pointRadius: rT }] };
+                chartTRef.current.update();
 
-                // Actualizar Modal si está abierto
                 if (expandedChartRef.current && isModalOpen) {
-                    if (expandedType === 'v') { expandedChartRef.current.data = chartVRef.current.data; }
-                    else if (expandedType === 'd') { expandedChartRef.current.data = chartDRef.current.data; }
-                    else if (expandedType === 'h') { expandedChartRef.current.data = chartHRef.current.data; }
+                    if (expandedType === 'v') expandedChartRef.current.data = chartVRef.current.data;
+                    else if (expandedType === 'l') expandedChartRef.current.data = chartLRef.current.data;
+                    else if (expandedType === 't') expandedChartRef.current.data = chartTRef.current.data;
                     expandedChartRef.current.update();
                 }
 
+            }, [velocity, length, width, kinematicViscosity, prandtl, thermalConductivity, tSurface, tFluid, isModalOpen, expandedType]);
+
+            const handleExpand = (type) => {
+                setExpandedType(type); setIsModalOpen(true);
+                setTimeout(() => {
+                    if (expandedChartRef.current) expandedChartRef.current.destroy();
+                    let sourceChart = type === 'v' ? chartVRef.current : (type === 'l' ? chartLRef.current : chartTRef.current);
+                    let yTitle = type === 't' ? 'Calor Q (W)' : 'h (W/m²°C)';
+                    let xTitle = type === 'v' ? 'Velocidad (m/s)' : (type === 'l' ? 'Longitud (m)' : 'ΔT (°C)');
+                    expandedChartRef.current = new Chart(document.getElementById('fp_expanded'), {
+                        type: 'line', data: JSON.parse(JSON.stringify(sourceChart.data)), 
+                        options: { ...commonChartOptions, scales: { x: { title: { display: true, text: xTitle, color: '#e2e8f0', font: {size: 16} } }, y: { title: { display: true, text: yTitle, color: '#e2e8f0', font: {size: 16} } } } }
+                    });
+                }, 100);
+            };
+
+            const formatDec = (num, decimals=2) => num.toFixed(decimals);
+            const formatSci = (num) => num.toExponential(2);
+
+            return (
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 pb-12">
+                    
+                    {/* Columna Izquierda: Parámetros */}
+                    <div className="lg:col-span-4 flex flex-col gap-6">
+                        <FluidPropertiesCard {...{fluidPreset, setFluidPreset, kinematicViscosity, setKinematicViscosity, thermalConductivity, setThermalConductivity, prandtl, setPrandtl}} />
+                        <div className="bg-slate-900 rounded-2xl shadow-xl p-5 border border-slate-800">
+                            <h3 className="text-lg font-bold text-white mb-4 border-b border-slate-800 pb-2"><WindIcon className="w-5 h-5 inline mr-2 text-blue-400"/>Geometría y Flujo</h3>
+                            <div className="space-y-4">
+                                <div><div className="flex justify-between mb-1"><label className="block text-xs font-semibold text-slate-400">Velocidad (V)</label><span className="text-xs text-blue-400">{velocity} m/s</span></div><input type="range" min="0.1" max="50" step="0.1" className="w-full" value={velocity} onChange={(e) => setVelocity(parseFloat(e.target.value))} /></div>
+                                <div className="grid grid-cols-2 gap-3">
+                                    <div><label className="block text-xs font-semibold text-slate-400 mb-1">Longitud L (m)</label><input type="number" step="0.1" className="w-full bg-slate-950 border border-slate-800 text-white rounded p-1.5 text-sm" value={length} onChange={(e) => setLength(parseFloat(e.target.value))} /></div>
+                                    <div><label className="block text-xs font-semibold text-slate-400 mb-1">Ancho w (m)</label><input type="number" step="0.1" className="w-full bg-slate-950 border border-slate-800 text-white rounded p-1.5 text-sm" value={width} onChange={(e) => setWidth(parseFloat(e.target.value))} /></div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-3">
+                                    <div><label className="block text-xs font-semibold text-slate-400 mb-1">T. Superficie (K)</label><input type="number" step="1" className="w-full bg-slate-950 border border-slate-800 text-white rounded p-1.5 text-sm" value={tSurface} onChange={(e) => setTSurface(parseFloat(e.target.value))} /></div>
+                                    <div><label className="block text-xs font-semibold text-slate-400 mb-1">T. Fluido (K)</label><input type="number" step="1" className="w-full bg-slate-950 border border-slate-800 text-white rounded p-1.5 text-sm" value={tFluid} onChange={(e) => setTFluid(parseFloat(e.target.value))} /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Columna Central: Esquema y Resultados */}
+                    <div className="lg:col-span-4 flex flex-col gap-6">
+                        <div className="bg-slate-900 rounded-2xl shadow-xl p-5 border border-slate-800">
+                            <h3 className="text-lg font-bold text-white mb-4 border-b border-slate-800 pb-2"><LayersIcon className="w-5 h-5 inline mr-2 text-indigo-400" /> Esquema: Placa Plana</h3>
+                            <div className="w-full flex justify-center py-6 bg-slate-950 rounded-xl border border-slate-800">
+                                <svg viewBox="0 0 500 180" className="w-full h-auto text-slate-300">
+                                    <defs><marker id="arrowHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker></defs>
+                                    <g stroke="#3b82f6" strokeWidth="2" fill="none"><path d="M 20,50 L 80,50" markerEnd="url(#arrowHead)" /><path d="M 20,90 L 80,90" markerEnd="url(#arrowHead)" /><path d="M 20,130 L 80,130" markerEnd="url(#arrowHead)" /></g>
+                                    <text x="20" y="35" fill="#60a5fa" fontSize="14" fontWeight="bold">V<tspan fontSize="10" dy="4">∞</tspan>, T<tspan fontSize="10" dy="4">∞</tspan></text>
+                                    <rect x="120" y="140" width="320" height="8" fill="#ef4444" rx="2" />
+                                    <text x="235" y="165" fill="#fca5a5" fontSize="14">Placa (T<tspan fontSize="10" dy="4">s</tspan>)</text>
+                                    <path d="M 120,155 L 120,175 M 440,155 L 440,175 M 120,165 L 440,165" stroke="#64748b" strokeWidth="1" />
+                                    <text x="260" y="180" fill="#94a3b8" fontSize="12">L = {length}m</text>
+                                    <path d="M 120,140 Q 200,40 440,20" stroke="#f59e0b" strokeWidth="2" fill="none" strokeDasharray="6,4" />
+                                    <text x="350" y="15" fill="#fbbf24" fontSize="12" fontWeight="bold">Capa Límite δ(x)</text>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div className="bg-slate-900 rounded-2xl shadow-xl p-5 border border-slate-800">
+                            <h3 className="text-lg font-bold text-white mb-4 border-b border-slate-800 pb-2"><CalculatorIcon className="w-5 h-5 inline mr-2 text-blue-400"/>Resultados</h3>
+                            <div className="grid grid-cols-2 gap-3 text-sm">
+                                <div className="p-3 bg-slate-950 rounded-lg border border-slate-800"><span className="block text-slate-500 mb-1">Reynolds (Re)</span><span className="text-lg font-bold text-white">{formatSci(res.Re)}</span><br/><span className={`text-[10px] font-bold uppercase tracking-wider ${res.regime === 'Laminar'?'text-emerald-400':'text-orange-400'}`}>{res.regime}</span></div>
+                                <div className="p-3 bg-slate-950 rounded-lg border border-slate-800"><span className="block text-slate-500 mb-1">Nusselt (Nu)</span><span className="text-lg font-bold text-white">{formatDec(res.Nu, 1)}</span></div>
+                                <div className="p-4 bg-gradient-to-r from-blue-900/40 to-slate-900 rounded-lg col-span-2 border border-blue-900">
+                                    <span className="block text-blue-400 font-bold mb-1 uppercase text-xs">Coef. Convección (h)</span>
+                                    <span className="text-3xl font-black text-white">{formatDec(res.h, 2)}</span> <span className="text-blue-300">W/m²·K</span>
+                                </div>
+                                <div className="p-3 bg-orange-950/30 rounded-lg border border-orange-900/50 col-span-2">
+                                    <span className="block text-orange-500 font-semibold mb-1">Transf. Calor Total (Q)</span>
+                                    <span className="text-xl font-bold text-orange-100">{res.Q > 1000 ? formatDec(res.Q/1000) + ' kW' : formatDec(res.Q) + ' W'}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Columna Derecha: Gráficas */}
+                    <div className="lg:col-span-4 flex flex-col gap-6">
+                        <div className="bg-slate-900 rounded-2xl shadow-xl p-5 border border-slate-800 flex-grow flex flex-col">
+                            <h3 className="text-xl font-bold text-white mb-4 border-b border-slate-800 pb-2"><ActivityIcon className="w-5 h-5 inline mr-2 text-teal-400"/>Sensibilidad</h3>
+                            <div className="flex-grow flex flex-col gap-4">
+                                <div className="relative h-40 w-full group">
+                                    <button onClick={()=>handleExpand('v')} className="absolute top-1 right-1 text-slate-400 hover:text-blue-400 z-10 hidden group-hover:block bg-slate-800 p-1 rounded"><ExpandIcon /></button>
+                                    <canvas id="fp_chartV"></canvas>
+                                </div>
+                                <div className="relative h-40 w-full group">
+                                    <button onClick={()=>handleExpand('l')} className="absolute top-1 right-1 text-slate-400 hover:text-orange-400 z-10 hidden group-hover:block bg-slate-800 p-1 rounded"><ExpandIcon /></button>
+                                    <canvas id="fp_chartL"></canvas>
+                                </div>
+                                <div className="relative h-40 w-full group">
+                                    <button onClick={()=>handleExpand('t')} className="absolute top-1 right-1 text-slate-400 hover:text-green-400 z-10 hidden group-hover:block bg-slate-800 p-1 rounded"><ExpandIcon /></button>
+                                    <canvas id="fp_chartT"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Modal */}
+                    {isModalOpen && (
+                        <div className="fixed inset-0 bg-slate-950/90 z-50 flex items-center justify-center p-6">
+                            <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-4xl h-[80vh] flex flex-col overflow-hidden shadow-2xl">
+                                <div className="flex justify-between items-center p-4 border-b border-slate-800">
+                                    <h3 className="text-xl font-bold text-white">Análisis Detallado (Placa Plana)</h3>
+                                    <button onClick={()=>setIsModalOpen(false)} className="text-slate-400 hover:text-red-400 bg-slate-800 rounded-full w-8 h-8 flex items-center justify-center text-xl">&times;</button>
+                                </div>
+                                <div className="p-6 flex-grow relative w-full h-full"><canvas id="fp_expanded"></canvas></div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        // --- SIMULACIÓN 2: TUBERÍA CIRCULAR (INTERNA) CON GRÁFICAS Y SVG PARABÓLICO ---
+        function PipeSimulation({ presets }) {
+            const [fluidPreset, setFluidPreset] = useState('agua300');
+            const [kinematicViscosity, setKinematicViscosity] = useState(8.56e-7);
+            const [prandtl, setPrandtl] = useState(5.83);
+            const [thermalConductivity, setThermalConductivity] = useState(0.613);
+            const [velocity, setVelocity] = useState(2.0);
+            const [diameter, setDiameter] = useState(0.05);
+            const [length, setLength] = useState(5.0);
+            const [tSurface, setTSurface] = useState(350);
+            const [tFluid, setTFluid] = useState(300);
+            const [boundaryCondition, setBoundaryCondition] = useState('Ts');
+
+            // Modal y Refs de Chart
+            const chartVRef = useRef(null);
+            const chartDRef = useRef(null);
+            const chartLRef = useRef(null);
+            const expandedChartRef = useRef(null);
+            const [isModalOpen, setIsModalOpen] = useState(false);
+            const [expandedType, setExpandedType] = useState(null);
+
+            useEffect(() => {
+                if (fluidPreset !== 'personalizado') {
+                    setKinematicViscosity(presets[fluidPreset].nu); setPrandtl(presets[fluidPreset].pr); setThermalConductivity(presets[fluidPreset].k);
+                }
+            }, [fluidPreset, presets]);
+
+            const calcCore = (v, D, L, nu_val, pr_val, k_val, ts_val, tf_val, bc) => {
+                const Re = (v * D) / nu_val;
+                let Nu = 0; let regime = '';
+                if (Re < 2300) { regime = 'Laminar'; Nu = bc === 'Ts' ? 3.66 : 4.36; } 
+                else if (Re < 10000) { regime = 'Transición'; Nu = 0.023 * Math.pow(Re, 0.8) * Math.pow(pr_val, 0.4); } 
+                else { regime = 'Turbulento'; const n = ts_val > tf_val ? 0.4 : 0.3; Nu = 0.023 * Math.pow(Re, 0.8) * Math.pow(pr_val, n); }
+                const h = (Nu * k_val) / D;
+                const area = Math.PI * D * L; const deltaT = Math.abs(ts_val - tf_val); const Q = h * area * deltaT;
+                return { Re, regime, Nu, h, Q, area, deltaT };
+            };
+
+            const res = useMemo(() => calcCore(velocity, diameter, length, kinematicViscosity, prandtl, thermalConductivity, tSurface, tFluid, boundaryCondition), 
+                [velocity, diameter, length, kinematicViscosity, prandtl, thermalConductivity, tSurface, tFluid, boundaryCondition]);
+
+            const commonChartOptions = {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                elements: { point: { radius: 0, hitRadius: 10, hoverRadius: 6 } },
+                scales: { 
+                    x: { grid: { display: false, color: '#334155' }, ticks: { color: '#94a3b8' } }, 
+                    y: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8' } } 
+                }
+            };
+
+            useEffect(() => {
+                chartVRef.current = new Chart(document.getElementById('pipe_chartV'), { type: 'line', data: { labels: [], datasets: [{ data: [], borderColor: '#0ea5e9', backgroundColor: 'rgba(14, 165, 233, 0.1)', fill: true, tension: 0.4 }] }, options: { ...commonChartOptions, plugins: { title: { display: true, text: 'h vs. Velocidad', color: '#e2e8f0' } } } });
+                chartDRef.current = new Chart(document.getElementById('pipe_chartD'), { type: 'line', data: { labels: [], datasets: [{ data: [], borderColor: '#f97316', backgroundColor: 'rgba(249, 115, 22, 0.1)', fill: true, tension: 0.4 }] }, options: { ...commonChartOptions, plugins: { title: { display: true, text: 'h vs. Diámetro', color: '#e2e8f0' } } } });
+                chartLRef.current = new Chart(document.getElementById('pipe_chartL'), { type: 'line', data: { labels: [], datasets: [{ data: [], borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.1)', fill: true, tension: 0.4 }] }, options: { ...commonChartOptions, plugins: { title: { display: true, text: 'Q vs. Longitud', color: '#e2e8f0' } } } });
+                return () => { chartVRef.current?.destroy(); chartDRef.current?.destroy(); chartLRef.current?.destroy(); };
+            }, []);
+
+            useEffect(() => {
+                if (!chartVRef.current || !chartDRef.current || !chartLRef.current) return;
+
+                // V Chart
+                let v_l = [], h_vs_v = [], cV = [], rV = [];
+                for (let vel = 0.1; vel <= 20; vel += 0.5) {
+                    v_l.push(vel.toFixed(1)); h_vs_v.push(calcCore(vel, diameter, length, kinematicViscosity, prandtl, thermalConductivity, tSurface, tFluid, boundaryCondition).h);
+                    let isC = Math.abs(vel - velocity) < 0.3; cV.push(isC ? '#ef4444' : 'rgba(14, 165, 233, 0.1)'); rV.push(isC ? 6 : 0);
+                }
+                chartVRef.current.data = { labels: v_l, datasets: [{ data: h_vs_v, borderColor: '#0ea5e9', backgroundColor: 'rgba(14, 165, 233, 0.1)', fill: true, tension: 0.4, pointBackgroundColor: cV, pointRadius: rV }] };
+                chartVRef.current.update();
+
+                // D Chart
+                let d_l = [], h_vs_d = [], cD = [], rD = [];
+                for (let dia = 0.01; dia <= 0.5; dia += 0.01) {
+                    d_l.push(dia.toFixed(2)); h_vs_d.push(calcCore(velocity, dia, length, kinematicViscosity, prandtl, thermalConductivity, tSurface, tFluid, boundaryCondition).h);
+                    let isC = Math.abs(dia - diameter) < 0.006; cD.push(isC ? '#ef4444' : 'rgba(249, 115, 22, 0.1)'); rD.push(isC ? 6 : 0);
+                }
+                chartDRef.current.data = { labels: d_l, datasets: [{ data: h_vs_d, borderColor: '#f97316', backgroundColor: 'rgba(249, 115, 22, 0.1)', fill: true, tension: 0.4, pointBackgroundColor: cD, pointRadius: rD }] };
+                chartDRef.current.update();
+
+                // L Chart (Q vs L)
+                let l_l = [], q_vs_l = [], cL = [], rL = [];
+                for (let len = 1; len <= 50; len += 1) {
+                    l_l.push(len.toFixed(0)); q_vs_l.push(calcCore(velocity, diameter, len, kinematicViscosity, prandtl, thermalConductivity, tSurface, tFluid, boundaryCondition).Q);
+                    let isC = Math.abs(len - length) < 0.6; cL.push(isC ? '#ef4444' : 'rgba(16, 185, 129, 0.1)'); rL.push(isC ? 6 : 0);
+                }
+                chartLRef.current.data = { labels: l_l, datasets: [{ data: q_vs_l, borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.1)', fill: true, tension: 0.4, pointBackgroundColor: cL, pointRadius: rL }] };
+                chartLRef.current.update();
+
+                if (expandedChartRef.current && isModalOpen) {
+                    if (expandedType === 'v') expandedChartRef.current.data = chartVRef.current.data;
+                    else if (expandedType === 'd') expandedChartRef.current.data = chartDRef.current.data;
+                    else if (expandedType === 'l') expandedChartRef.current.data = chartLRef.current.data;
+                    expandedChartRef.current.update();
+                }
+
+            }, [velocity, diameter, length, kinematicViscosity, prandtl, thermalConductivity, tSurface, tFluid, boundaryCondition, isModalOpen, expandedType]);
+
+            const handleExpand = (type) => {
+                setExpandedType(type); setIsModalOpen(true);
+                setTimeout(() => {
+                    if (expandedChartRef.current) expandedChartRef.current.destroy();
+                    let sourceChart = type === 'v' ? chartVRef.current : (type === 'd' ? chartDRef.current : chartLRef.current);
+                    let yTitle = type === 'l' ? 'Calor Q (W)' : 'h (W/m²°C)';
+                    let xTitle = type === 'v' ? 'Velocidad (m/s)' : (type === 'd' ? 'Diámetro (m)' : 'Longitud (m)');
+                    expandedChartRef.current = new Chart(document.getElementById('pipe_expanded'), {
+                        type: 'line', data: JSON.parse(JSON.stringify(sourceChart.data)), 
+                        options: { ...commonChartOptions, scales: { x: { title: { display: true, text: xTitle, color: '#e2e8f0', font: {size: 16} } }, y: { title: { display: true, text: yTitle, color: '#e2e8f0', font: {size: 16} } } } }
+                    });
+                }, 100);
+            };
+
+            const formatDec = (num, decimals=2) => num.toFixed(decimals);
+            const formatSci = (num) => num.toExponential(2);
+
+            return (
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 pb-12">
+                    {/* Columna Izquierda: Parámetros */}
+                    <div className="lg:col-span-4 flex flex-col gap-6">
+                        <FluidPropertiesCard {...{fluidPreset, setFluidPreset, kinematicViscosity, setKinematicViscosity, thermalConductivity, setThermalConductivity, prandtl, setPrandtl}} />
+                        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl relative overflow-hidden">
+                            <h3 className="text-lg font-bold text-white mb-4 border-b border-slate-800 pb-2"><WindIcon className="w-5 h-5 inline mr-2 text-blue-400"/> Geometría del Tubo</h3>
+                            <div className="space-y-4 relative z-10">
+                                <div><div className="flex justify-between mb-1"><label className="block text-xs font-semibold text-slate-400">Velocidad (V)</label><span className="text-xs text-blue-400">{velocity} m/s</span></div><input type="range" min="0.1" max="20" step="0.1" className="w-full" value={velocity} onChange={(e) => setVelocity(parseFloat(e.target.value))} /></div>
+                                <div className="grid grid-cols-2 gap-3">
+                                    <div><label className="block text-xs font-semibold text-slate-400 mb-1">Diámetro (D)</label><input type="number" step="0.01" min="0.01" className="w-full bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-sm text-white" value={diameter} onChange={(e) => setDiameter(parseFloat(e.target.value))} /></div>
+                                    <div><label className="block text-xs font-semibold text-slate-400 mb-1">Longitud (L)</label><input type="number" step="0.1" min="0.1" className="w-full bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-sm text-white" value={length} onChange={(e) => setLength(parseFloat(e.target.value))} /></div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-3">
+                                    <div><label className="block text-xs font-semibold text-slate-400 mb-1">T. Pared (K)</label><input type="number" step="1" className="w-full bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-sm text-white" value={tSurface} onChange={(e) => setTSurface(parseFloat(e.target.value))} /></div>
+                                    <div><label className="block text-xs font-semibold text-slate-400 mb-1">T. Fluido (K)</label><input type="number" step="1" className="w-full bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-sm text-white" value={tFluid} onChange={(e) => setTFluid(parseFloat(e.target.value))} /></div>
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-semibold text-slate-400 mb-1">C. de Frontera (Flujo Laminar)</label>
+                                    <select className="w-full bg-slate-950 border border-slate-800 rounded-lg p-1.5 text-xs text-slate-200 outline-none" value={boundaryCondition} onChange={(e) => setBoundaryCondition(e.target.value)}>
+                                        <option value="Ts">T. Pared Cte. (Ts) [Nu = 3.66]</option>
+                                        <option value="qs">Flujo de Calor Cte. (qs) [Nu = 4.36]</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Columna Central: Esquema y Resultados */}
+                    <div className="lg:col-span-4 flex flex-col gap-6">
+                        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl relative overflow-hidden">
+                            <h3 className="text-lg font-bold text-white mb-4 border-b border-slate-800 pb-2"><CircleIcon className="w-5 h-5 inline mr-2 text-indigo-400" /> Esquema: Tubería Circular</h3>
+                            <div className="w-full flex justify-center py-6 bg-slate-950 rounded-xl border border-slate-800">
+                                <svg viewBox="0 0 500 180" className="w-full h-auto text-slate-300">
+                                    <defs>
+                                        <marker id="arrowHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker>
+                                        <linearGradient id="pipeGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#ef4444" stopOpacity="0.8"/><stop offset="10%" stopColor="#450a0a" stopOpacity="0.4"/><stop offset="90%" stopColor="#450a0a" stopOpacity="0.4"/><stop offset="100%" stopColor="#ef4444" stopOpacity="0.8"/></linearGradient>
+                                    </defs>
+                                    <rect x="100" y="40" width="300" height="100" fill="url(#pipeGrad)" stroke="#ef4444" strokeWidth="2" />
+                                    <g stroke="#3b82f6" strokeWidth="2" fill="none"><path d="M 20,60 L 80,60" markerEnd="url(#arrowHead)" /><path d="M 20,90 L 80,90" markerEnd="url(#arrowHead)" /><path d="M 20,120 L 80,120" markerEnd="url(#arrowHead)" /></g>
+                                    <text x="10" y="45" fill="#60a5fa" fontSize="14" fontWeight="bold">V<tspan fontSize="10" dy="4">m</tspan>, T<tspan fontSize="10" dy="4">m,i</tspan></text>
+                                    <path d="M 250,40 Q 330,90 250,140" stroke="#f59e0b" strokeWidth="2" fill="none" strokeDasharray="4,2"/>
+                                    <path d="M 250,90 L 310,90" stroke="#f59e0b" strokeWidth="1" markerEnd="url(#arrowHead)"/>
+                                    <text x="315" y="85" fill="#fbbf24" fontSize="12" fontWeight="bold">Perfil u(r)</text>
+                                    <text x="210" y="25" fill="#fca5a5" fontSize="14">Pared (T<tspan fontSize="10" dy="4">s</tspan> ó q<tspan fontSize="10" dy="4">s</tspan>)</text>
+                                    <path d="M 420,40 L 440,40 M 420,140 L 440,140 M 430,40 L 430,140" stroke="#64748b" strokeWidth="1" />
+                                    <text x="445" y="95" fill="#94a3b8" fontSize="14">D={diameter}m</text>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div className="bg-slate-900 rounded-2xl shadow-xl p-5 border border-slate-800">
+                            <h3 className="text-lg font-bold text-white mb-4 border-b border-slate-800 pb-2"><CalculatorIcon className="w-5 h-5 inline mr-2 text-blue-400"/>Resultados</h3>
+                            <div className="grid grid-cols-2 gap-3 text-sm">
+                                <div className="p-3 bg-slate-950 rounded-lg border border-slate-800"><span className="block text-slate-500 mb-1">Reynolds (Re)</span><span className="text-lg font-bold text-white">{formatSci(res.Re)}</span><br/><span className={`text-[10px] font-bold uppercase tracking-wider ${res.regime === 'Laminar'?'text-emerald-400':(res.regime==='Transición'?'text-yellow-400':'text-orange-400')}`}>{res.regime}</span></div>
+                                <div className="p-3 bg-slate-950 rounded-lg border border-slate-800"><span className="block text-slate-500 mb-1">Nusselt (Nu)</span><span className="text-lg font-bold text-white">{formatDec(res.Nu, 1)}</span></div>
+                                <div className="p-4 bg-gradient-to-r from-blue-900/40 to-slate-900 rounded-lg col-span-2 border border-blue-900">
+                                    <span className="block text-blue-400 font-bold mb-1 uppercase text-xs">Coef. Convección (h)</span>
+                                    <span className="text-3xl font-black text-white">{formatDec(res.h, 2)}</span> <span className="text-blue-300">W/m²·K</span>
+                                </div>
+                                <div className="p-3 bg-orange-950/30 rounded-lg border border-orange-900/50 col-span-2">
+                                    <span className="block text-orange-500 font-semibold mb-1">Transf. Calor Total (Q)</span>
+                                    <span className="text-xl font-bold text-orange-100">{res.Q > 1000 ? formatDec(res.Q/1000) + ' kW' : formatDec(res.Q) + ' W'}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Columna Derecha: Gráficas */}
+                    <div className="lg:col-span-4 flex flex-col gap-6">
+                        <div className="bg-slate-900 rounded-2xl shadow-xl p-5 border border-slate-800 flex-grow flex flex-col">
+                            <h3 className="text-xl font-bold text-white mb-4 border-b border-slate-800 pb-2"><ActivityIcon className="w-5 h-5 inline mr-2 text-teal-400"/>Sensibilidad</h3>
+                            <div className="flex-grow flex flex-col gap-4">
+                                <div className="relative h-40 w-full group">
+                                    <button onClick={()=>handleExpand('v')} className="absolute top-1 right-1 text-slate-400 hover:text-blue-400 z-10 hidden group-hover:block bg-slate-800 p-1 rounded"><ExpandIcon /></button>
+                                    <canvas id="pipe_chartV"></canvas>
+                                </div>
+                                <div className="relative h-40 w-full group">
+                                    <button onClick={()=>handleExpand('d')} className="absolute top-1 right-1 text-slate-400 hover:text-orange-400 z-10 hidden group-hover:block bg-slate-800 p-1 rounded"><ExpandIcon /></button>
+                                    <canvas id="pipe_chartD"></canvas>
+                                </div>
+                                <div className="relative h-40 w-full group">
+                                    <button onClick={()=>handleExpand('l')} className="absolute top-1 right-1 text-slate-400 hover:text-green-400 z-10 hidden group-hover:block bg-slate-800 p-1 rounded"><ExpandIcon /></button>
+                                    <canvas id="pipe_chartL"></canvas>
+                                </div>
+                            </div>
+                            <div className="mt-4 bg-slate-950 border border-slate-800 rounded-lg p-3 text-center">
+                                <span className="block text-slate-200 font-serif text-[10px] tracking-wider">
+                                    {res.regime === 'Laminar' ? (boundaryCondition==='Ts'? 'Nu = 3.66 (T. Pared Cte.)':'Nu = 4.36 (Q. Pared Cte.)') : 'Nu = 0.023 Re^0.8 Pr^n (Dittus-Boelter)'}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Modal */}
+                    {isModalOpen && (
+                        <div className="fixed inset-0 bg-slate-950/90 z-50 flex items-center justify-center p-6">
+                            <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-4xl h-[80vh] flex flex-col overflow-hidden shadow-2xl">
+                                <div className="flex justify-between items-center p-4 border-b border-slate-800">
+                                    <h3 className="text-xl font-bold text-white">Análisis Detallado (Tubería)</h3>
+                                    <button onClick={()=>setIsModalOpen(false)} className="text-slate-400 hover:text-red-400 bg-slate-800 rounded-full w-8 h-8 flex items-center justify-center text-xl">&times;</button>
+                                </div>
+                                <div className="p-6 flex-grow relative w-full h-full"><canvas id="pipe_expanded"></canvas></div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        // --- SIMULACIÓN 3: CHIMENEA (Ducto vertical con gases) ---
+        function ChimneySimulation() {
+            const nu_air = 0.0000345; const k_air = 0.0381; const Pr_air = 0.697; const n_cooling = 0.3;    
+
+            const [d, setD] = useState(0.5); const [v, setV] = useState(3.0); const [hChimney, setHChimney] = useState(5.0);
+            const [te, setTe] = useState(350); const [ts, setTs] = useState(250); const [tw, setTw] = useState(100);
+
+            const canvasRef = useRef(null); const stateRef = useRef({d, v}); const particlesRef = useRef([]);
+            const chartVRef = useRef(null); const chartDRef = useRef(null); const chartHRef = useRef(null); const expandedChartRef = useRef(null);
+            const [isModalOpen, setIsModalOpen] = useState(false); const [expandedType, setExpandedType] = useState(null);
+
+            useEffect(() => { stateRef.current = { d, v }; }, [d, v]);
+
+            const calcCore = (dia, vel, alt, ten, tsa, twa) => {
+                const tm = (ten + tsa) / 2; const tf = (tm + twa) / 2;
+                const re = (vel * dia) / nu_air;
+                const nu = 0.023 * Math.pow(re, 0.8) * Math.pow(Pr_air, n_cooling);
+                const h_conv = (nu * k_air) / dia;
+                const area = Math.PI * dia * alt; const q = h_conv * area * (tm - twa);
+                return { tm, tf, re, nu, h_conv, area, q };
+            };
+
+            const res = useMemo(() => calcCore(d, v, hChimney, te, ts, tw), [d, v, hChimney, te, ts, tw]);
+
+            useEffect(() => {
+                const canvas = canvasRef.current; if (!canvas) return; const ctx = canvas.getContext('2d');
+                if (particlesRef.current.length === 0) {
+                    for (let i = 0; i < 80; i++) {
+                        particlesRef.current.push({ x: Math.random(), y: Math.random() * canvas.height, size: Math.random() * 4 + 2, opacity: Math.random() * 0.5 + 0.2, wobbleSpeed: Math.random() * 0.05 + 0.02, wobbleOffset: Math.random() * Math.PI * 2 });
+                    }
+                }
+                let animationFrameId;
+                const render = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                    grad.addColorStop(0, '#1e293b'); grad.addColorStop(1, '#020617'); ctx.fillStyle = grad; ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    const currD = stateRef.current.d; const currV = stateRef.current.v;
+                    const minWidthPx = 40; const maxWidthPx = 220; const visualWidth = minWidthPx + ((currD - 0.1) / (2.0 - 0.1)) * (maxWidthPx - minWidthPx);
+                    const centerX = canvas.width / 2; const wallThickness = 15;
+                    const leftWallX = centerX - visualWidth / 2 - wallThickness; const rightWallX = centerX + visualWidth / 2;
+                    ctx.fillStyle = '#475569'; ctx.fillRect(leftWallX, 0, wallThickness, canvas.height); ctx.fillRect(rightWallX, 0, wallThickness, canvas.height);
+                    ctx.strokeStyle = '#334155'; ctx.lineWidth = 1;
+                    for(let y=0; y<canvas.height; y+=20) { ctx.beginPath(); ctx.moveTo(leftWallX, y); ctx.lineTo(leftWallX+wallThickness, y); ctx.stroke(); ctx.beginPath(); ctx.moveTo(rightWallX, y); ctx.lineTo(rightWallX+wallThickness, y); ctx.stroke(); }
+                    const baseSpeed = currV * 0.8;
+                    for (let i = 0; i < particlesRef.current.length; i++) {
+                        let p = particlesRef.current[i]; p.y -= baseSpeed * (p.size * 0.3);
+                        if (p.y < -20) { p.y = canvas.height + 20; p.x = Math.random(); }
+                        let turbulencia = (currV / 15) * 10; let wobble = Math.sin(Date.now() * p.wobbleSpeed * 0.1 + p.wobbleOffset) * turbulencia;
+                        let actualX = (centerX - visualWidth/2 + 5) + p.x * (visualWidth - 10) + wobble;
+                        actualX = Math.max(centerX - visualWidth/2 + p.size, Math.min(centerX + visualWidth/2 - p.size, actualX));
+                        let heightRatio = p.y / canvas.height;
+                        let r = Math.floor(150 + 105 * heightRatio); let g = Math.floor(50 + 100 * heightRatio); let b = Math.floor(50);
+                        ctx.beginPath(); ctx.arc(actualX, p.y, p.size, 0, Math.PI * 2); ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.opacity})`; ctx.fill();
+                    }
+                    animationFrameId = requestAnimationFrame(render);
+                };
+                render();
+                return () => cancelAnimationFrame(animationFrameId);
+            }, []);
+
+            const commonChartOptions = {
+                responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, elements: { point: { radius: 0, hitRadius: 10, hoverRadius: 6 } },
+                scales: { x: { grid: { display: false, color: '#334155' }, ticks: { color: '#94a3b8' } }, y: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8' } } }
+            };
+
+            useEffect(() => {
+                chartVRef.current = new Chart(document.getElementById('chimney_chartV'), { type: 'line', data: { labels: [], datasets: [{ data: [], borderColor: '#0ea5e9', backgroundColor: 'rgba(14, 165, 233, 0.1)', fill: true, tension: 0.4 }] }, options: { ...commonChartOptions, plugins: { title: { display: true, text: 'h vs. Velocidad', color: '#e2e8f0' } } } });
+                chartDRef.current = new Chart(document.getElementById('chimney_chartD'), { type: 'line', data: { labels: [], datasets: [{ data: [], borderColor: '#f97316', backgroundColor: 'rgba(249, 115, 22, 0.1)', fill: true, tension: 0.4 }] }, options: { ...commonChartOptions, plugins: { title: { display: true, text: 'h vs. Diámetro', color: '#e2e8f0' } } } });
+                chartHRef.current = new Chart(document.getElementById('chimney_chartH'), { type: 'line', data: { labels: [], datasets: [{ data: [], borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.1)', fill: true, tension: 0.4 }] }, options: { ...commonChartOptions, plugins: { title: { display: true, text: 'h vs. Altura', color: '#e2e8f0' } } } });
+                return () => { chartVRef.current?.destroy(); chartDRef.current?.destroy(); chartHRef.current?.destroy(); };
+            }, []);
+
+            useEffect(() => {
+                if (!chartVRef.current || !chartDRef.current || !chartHRef.current) return;
+                let v_labels = [], h_vs_v = [], pointColorsV = [], pointRadiusV = [];
+                for (let vel = 0.5; vel <= 15; vel += 0.5) {
+                    v_labels.push(vel.toFixed(1)); h_vs_v.push(calcCore(d, vel, hChimney, te, ts, tw).h_conv);
+                    let isCurrent = Math.abs(vel - v) < 0.1; pointColorsV.push(isCurrent ? '#ef4444' : 'rgba(14, 165, 233, 0.1)'); pointRadiusV.push(isCurrent ? 6 : 0);
+                }
+                chartVRef.current.data = { labels: v_labels, datasets: [{ data: h_vs_v, borderColor: '#0ea5e9', backgroundColor: 'rgba(14, 165, 233, 0.1)', fill: true, tension: 0.4, pointBackgroundColor: pointColorsV, pointRadius: pointRadiusV }] }; chartVRef.current.update();
+
+                let d_labels = [], h_vs_d = [], pointColorsD = [], pointRadiusD = [];
+                for (let dia = 0.1; dia <= 2.0; dia += 0.05) {
+                    d_labels.push(dia.toFixed(2)); h_vs_d.push(calcCore(dia, v, hChimney, te, ts, tw).h_conv);
+                    let isCurrent = Math.abs(dia - d) < 0.02; pointColorsD.push(isCurrent ? '#ef4444' : 'rgba(249, 115, 22, 0.1)'); pointRadiusD.push(isCurrent ? 6 : 0);
+                }
+                chartDRef.current.data = { labels: d_labels, datasets: [{ data: h_vs_d, borderColor: '#f97316', backgroundColor: 'rgba(249, 115, 22, 0.1)', fill: true, tension: 0.4, pointBackgroundColor: pointColorsD, pointRadius: pointRadiusD }] }; chartDRef.current.update();
+
+                let h_labels = [], h_vs_h = [], pointColorsH = [], pointRadiusH = [];
+                for (let alt = 1.0; alt <= 20.0; alt += 0.5) {
+                    h_labels.push(alt.toFixed(1)); h_vs_h.push(calcCore(d, v, alt, te, ts, tw).h_conv);
+                    let isCurrent = Math.abs(alt - hChimney) < 0.2; pointColorsH.push(isCurrent ? '#ef4444' : 'rgba(16, 185, 129, 0.1)'); pointRadiusH.push(isCurrent ? 6 : 0);
+                }
+                chartHRef.current.data = { labels: h_labels, datasets: [{ data: h_vs_h, borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.1)', fill: true, tension: 0.4, pointBackgroundColor: pointColorsH, pointRadius: pointRadiusH }] }; chartHRef.current.update();
+
+                if (expandedChartRef.current && isModalOpen) {
+                    if (expandedType === 'v') expandedChartRef.current.data = chartVRef.current.data;
+                    else if (expandedType === 'd') expandedChartRef.current.data = chartDRef.current.data;
+                    else if (expandedType === 'h') expandedChartRef.current.data = chartHRef.current.data;
+                    expandedChartRef.current.update();
+                }
             }, [d, v, hChimney, te, ts, tw, isModalOpen, expandedType]);
 
             const handleExpand = (type) => {
@@ -565,7 +682,7 @@
                 setTimeout(() => {
                     if (expandedChartRef.current) expandedChartRef.current.destroy();
                     let sourceChart = type === 'v' ? chartVRef.current : (type === 'd' ? chartDRef.current : chartHRef.current);
-                    expandedChartRef.current = new Chart(document.getElementById('expanded_canvas'), {
+                    expandedChartRef.current = new Chart(document.getElementById('chimney_expanded_canvas'), {
                         type: 'line', data: JSON.parse(JSON.stringify(sourceChart.data)), 
                         options: { ...commonChartOptions, scales: { x: { title: { display: true, text: 'Variable', color: '#e2e8f0', font: {size: 16} } }, y: { title: { display: true, text: 'h (W/m²°C)', color: '#e2e8f0', font: {size: 16} } } } }
                     });
@@ -577,29 +694,37 @@
             return (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 pb-12">
                     
-                    {/* Controles y Resultados */}
+                    {/* Columna Izquierda: Parámetros */}
                     <div className="lg:col-span-4 flex flex-col gap-6">
                         <div className="bg-slate-900 rounded-2xl shadow-xl p-5 border border-slate-800">
-                            <h3 className="text-lg font-bold text-white mb-4 border-b border-slate-800 pb-2"><i className="fas fa-sliders-h text-orange-500 mr-2"></i>Parámetros</h3>
+                            <h3 className="text-lg font-bold text-white mb-4 border-b border-slate-800 pb-2"><WindIcon className="w-5 h-5 inline mr-2 text-blue-400"/>Parámetros</h3>
                             <div className="space-y-4">
-                                <div><label className="block text-xs font-semibold text-slate-400 mb-1">Diámetro D (m)</label><div className="flex gap-3"><input type="range" min="0.1" max="2.0" step="0.05" className="w-full" value={d} onChange={e=>setD(parseFloat(e.target.value))}/><input type="number" className="w-20 bg-slate-950 border border-slate-800 text-white rounded p-1 text-sm text-center" value={d} onChange={e=>setD(parseFloat(e.target.value))}/></div></div>
-                                <div><label className="block text-xs font-semibold text-slate-400 mb-1">Velocidad V (m/s)</label><div className="flex gap-3"><input type="range" min="0.5" max="15.0" step="0.1" className="w-full" value={v} onChange={e=>setV(parseFloat(e.target.value))}/><input type="number" className="w-20 bg-slate-950 border border-slate-800 text-white rounded p-1 text-sm text-center" value={v} onChange={e=>setV(parseFloat(e.target.value))}/></div></div>
-                                <div><label className="block text-xs font-semibold text-slate-400 mb-1">Altura H (m)</label><div className="flex gap-3"><input type="range" min="1.0" max="20.0" step="0.5" className="w-full" value={hChimney} onChange={e=>setHChimney(parseFloat(e.target.value))}/><input type="number" className="w-20 bg-slate-950 border border-slate-800 text-white rounded p-1 text-sm text-center" value={hChimney} onChange={e=>setHChimney(parseFloat(e.target.value))}/></div></div>
+                                <div><label className="block text-xs font-semibold text-slate-400 mb-1">Diámetro D (m)</label><div className="flex gap-3"><input type="range" min="0.1" max="2.0" step="0.05" className="w-full" value={d} onChange={e=>setD(parseFloat(e.target.value))}/><input type="number" className="w-16 bg-slate-950 border border-slate-800 text-white rounded p-1 text-sm text-center" value={d} onChange={e=>setD(parseFloat(e.target.value))}/></div></div>
+                                <div><label className="block text-xs font-semibold text-slate-400 mb-1">Velocidad V (m/s)</label><div className="flex gap-3"><input type="range" min="0.5" max="15.0" step="0.1" className="w-full" value={v} onChange={e=>setV(parseFloat(e.target.value))}/><input type="number" className="w-16 bg-slate-950 border border-slate-800 text-white rounded p-1 text-sm text-center" value={v} onChange={e=>setV(parseFloat(e.target.value))}/></div></div>
+                                <div><label className="block text-xs font-semibold text-slate-400 mb-1">Altura H (m)</label><div className="flex gap-3"><input type="range" min="1.0" max="20.0" step="0.5" className="w-full" value={hChimney} onChange={e=>setHChimney(parseFloat(e.target.value))}/><input type="number" className="w-16 bg-slate-950 border border-slate-800 text-white rounded p-1 text-sm text-center" value={hChimney} onChange={e=>setHChimney(parseFloat(e.target.value))}/></div></div>
                                 <div className="grid grid-cols-2 gap-4">
-                                    <div><label className="block text-xs font-semibold text-slate-400 mb-1">T. Entrada (°C)</label><input type="number" className="w-full bg-slate-950 border border-slate-800 text-white rounded p-1 text-sm" value={te} onChange={e=>setTe(parseFloat(e.target.value))}/></div>
-                                    <div><label className="block text-xs font-semibold text-slate-400 mb-1">T. Salida (°C)</label><input type="number" className="w-full bg-slate-950 border border-slate-800 text-white rounded p-1 text-sm" value={ts} onChange={e=>setTs(parseFloat(e.target.value))}/></div>
+                                    <div><label className="block text-xs font-semibold text-slate-400 mb-1">T. Entrada (°C)</label><input type="number" className="w-full bg-slate-950 border border-slate-800 text-white rounded p-1.5 text-sm" value={te} onChange={e=>setTe(parseFloat(e.target.value))}/></div>
+                                    <div><label className="block text-xs font-semibold text-slate-400 mb-1">T. Salida (°C)</label><input type="number" className="w-full bg-slate-950 border border-slate-800 text-white rounded p-1.5 text-sm" value={ts} onChange={e=>setTs(parseFloat(e.target.value))}/></div>
                                 </div>
                                 <div><label className="block text-xs font-semibold text-slate-400 mb-1">T. Pared Interna Tw (°C)</label><input type="range" min="20" max="200" step="5" className="w-full" value={tw} onChange={e=>setTw(parseFloat(e.target.value))}/></div>
                             </div>
+                        </div>
+                    </div>
+
+                    {/* Columna Central: Esquema y Resultados */}
+                    <div className="lg:col-span-4 flex flex-col gap-6">
+                        <div className="bg-slate-900 rounded-2xl shadow-xl p-5 border border-slate-800 h-[300px] flex flex-col">
+                            <h3 className="text-lg font-bold text-white mb-2"><LayersIcon className="w-5 h-5 inline mr-2 text-indigo-400"/>Dinámica de Gases</h3>
+                            <div className="flex-grow rounded-xl overflow-hidden relative"><canvas ref={canvasRef} width="300" height="400" className="w-full h-full object-cover"></canvas></div>
                         </div>
 
                         <div className="bg-slate-900 rounded-2xl shadow-xl p-5 border border-slate-800">
                             <h3 className="text-lg font-bold text-white mb-4 border-b border-slate-800 pb-2"><CalculatorIcon className="w-5 h-5 inline mr-2 text-blue-400"/>Resultados</h3>
                             <div className="grid grid-cols-2 gap-3 text-sm">
-                                <div className="p-3 bg-slate-950 rounded-lg border border-slate-800"><span className="block text-slate-500 mb-1">Reynolds (Re)</span><span className="text-lg font-bold text-white">{Math.round(res.re).toLocaleString()}</span><br/><span className={`text-xs ${res.re>10000?'text-blue-400':(res.re<2300?'text-green-400':'text-orange-400')}`}>{res.re>10000?'Turbulento':(res.re<2300?'Laminar':'Transición')}</span></div>
+                                <div className="p-3 bg-slate-950 rounded-lg border border-slate-800"><span className="block text-slate-500 mb-1">Reynolds (Re)</span><span className="text-lg font-bold text-white">{Math.round(res.re).toLocaleString()}</span><br/><span className={`text-[10px] uppercase font-bold tracking-wider ${res.re>10000?'text-blue-400':(res.re<2300?'text-green-400':'text-orange-400')}`}>{res.re>10000?'Turbulento':(res.re<2300?'Laminar':'Transición')}</span></div>
                                 <div className="p-3 bg-slate-950 rounded-lg border border-slate-800"><span className="block text-slate-500 mb-1">Nusselt (Nu)</span><span className="text-lg font-bold text-white">{formatDec(res.nu)}</span></div>
                                 <div className="p-4 bg-gradient-to-r from-blue-900/40 to-slate-900 rounded-lg col-span-2 border border-blue-900">
-                                    <span className="block text-blue-400 font-bold mb-1 uppercase text-xs">Coef. de Convección (h)</span>
+                                    <span className="block text-blue-400 font-bold mb-1 uppercase text-xs">Coef. Convección (h)</span>
                                     <span className="text-3xl font-black text-white">{formatDec(res.h_conv)}</span> <span className="text-blue-300">W/m²·K</span>
                                 </div>
                                 <div className="p-3 bg-orange-950/30 rounded-lg border border-orange-900/50 col-span-2">
@@ -610,49 +735,40 @@
                         </div>
                     </div>
 
-                    {/* Animación */}
-                    <div className="lg:col-span-4 bg-slate-900 rounded-2xl shadow-xl p-5 border border-slate-800 flex flex-col h-[600px] lg:h-auto">
-                        <h3 className="text-xl font-bold text-white mb-2 text-center"><WindIcon className="w-5 h-5 inline mr-2"/>Dinámica</h3>
-                        <div className="flex-grow rounded-xl overflow-hidden relative">
-                            <canvas ref={canvasRef} width="300" height="500" className="w-full h-full object-cover"></canvas>
-                        </div>
-                    </div>
-
-                    {/* Gráficas */}
+                    {/* Columna Derecha: Gráficas */}
                     <div className="lg:col-span-4 flex flex-col gap-6">
                         <div className="bg-slate-900 rounded-2xl shadow-xl p-5 border border-slate-800 flex-grow flex flex-col">
                             <h3 className="text-xl font-bold text-white mb-4 border-b border-slate-800 pb-2"><ActivityIcon className="w-5 h-5 inline mr-2 text-teal-400"/>Sensibilidad</h3>
                             <div className="flex-grow flex flex-col gap-4">
                                 <div className="relative h-40 w-full group">
                                     <button onClick={()=>handleExpand('v')} className="absolute top-1 right-1 text-slate-400 hover:text-blue-400 z-10 hidden group-hover:block bg-slate-800 p-1 rounded"><ExpandIcon /></button>
-                                    <canvas id="chartV_canvas"></canvas>
+                                    <canvas id="chimney_chartV"></canvas>
                                 </div>
                                 <div className="relative h-40 w-full group">
                                     <button onClick={()=>handleExpand('d')} className="absolute top-1 right-1 text-slate-400 hover:text-orange-400 z-10 hidden group-hover:block bg-slate-800 p-1 rounded"><ExpandIcon /></button>
-                                    <canvas id="chartD_canvas"></canvas>
+                                    <canvas id="chimney_chartD"></canvas>
                                 </div>
                                 <div className="relative h-40 w-full group">
                                     <button onClick={()=>handleExpand('h')} className="absolute top-1 right-1 text-slate-400 hover:text-green-400 z-10 hidden group-hover:block bg-slate-800 p-1 rounded"><ExpandIcon /></button>
-                                    <canvas id="chartH_canvas"></canvas>
+                                    <canvas id="chimney_chartH"></canvas>
                                 </div>
                             </div>
                             <div className="mt-4 bg-slate-950 border border-slate-800 rounded-lg p-3 text-center">
-                                <span className="block text-slate-200 font-serif text-lg tracking-wider">Nu = 0.023 Re<sup>0.8</sup> Pr<sup>0.3</sup></span>
-                                <span className="block text-xs text-blue-500 mt-1">Dittus-Boelter (Enfriamiento)</span>
+                                <span className="block text-slate-200 font-serif text-[10px] tracking-wider">Nu = 0.023 Re<sup>0.8</sup> Pr<sup>0.3</sup></span>
                             </div>
                         </div>
                     </div>
 
-                    {/* Modal para gráfica expandida */}
+                    {/* Modal */}
                     {isModalOpen && (
                         <div className="fixed inset-0 bg-slate-950/90 z-50 flex items-center justify-center p-6">
                             <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-4xl h-[80vh] flex flex-col overflow-hidden shadow-2xl">
                                 <div className="flex justify-between items-center p-4 border-b border-slate-800">
-                                    <h3 className="text-xl font-bold text-white">Análisis Detallado</h3>
+                                    <h3 className="text-xl font-bold text-white">Análisis Detallado (Chimenea)</h3>
                                     <button onClick={()=>setIsModalOpen(false)} className="text-slate-400 hover:text-red-400 bg-slate-800 rounded-full w-8 h-8 flex items-center justify-center text-xl">&times;</button>
                                 </div>
                                 <div className="p-6 flex-grow relative w-full h-full">
-                                    <canvas id="expanded_canvas"></canvas>
+                                    <canvas id="chimney_expanded_canvas"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -661,7 +777,6 @@
                 </div>
             );
         }
-
 
         // --- APLICACIÓN PRINCIPAL (Layout con Sidebar) ---
         function App() {
@@ -682,7 +797,7 @@
                         <div className="p-6 border-b border-slate-800 bg-slate-950/50 cursor-pointer" onClick={() => setActiveSim('home')}>
                             <div className="flex items-center gap-3 mb-1">
                                 <CalculatorIcon className="text-teal-400 w-8 h-8" />
-                                <h1 className="text-xl font-bold text-white tracking-tight">Solver Pro</h1>
+                                <h1 className="text-xl font-bold text-white tracking-tight">ThermoFlow Pro</h1>
                             </div>
                             <p className="text-xs text-slate-500 uppercase tracking-widest font-semibold ml-11">Simulation Suite</p>
                         </div>
